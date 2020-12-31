@@ -1,0 +1,95 @@
+<div style="height: 100%; max-width: 800px; margin: auto">
+  <mat-card>
+    <mat-form-field>
+      <mat-label>Search a patient...</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="e.g. patient name" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}}, {{element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef> Street</th>
+        <td mat-cell *matCellDef="let element"> {{element.street}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City</th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="primary" (click)="updateSelectedPatient(element.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="warn" (click)="deletePatient(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No patient matching the filter "{{input.value}}"</td>
+      </tr>
+
+    </table>
+    <button mat-fab color="primary" (click)="enablePatientAdding()" style="margin: 10px">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card>
+  <mat-card *ngIf="selectedPatient!= null">
+    <mat-form-field appearance="standard">
+      <mat-label>firstname</mat-label>
+      <label>
+        <input required matInput [(ngModel)]="selectedPatient.firstName">
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>lastName</mat-label>
+      <label>
+        <input required matInput [(ngModel)]="selectedPatient.lastName">
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>street</mat-label>
+      <label>
+        <input required matInput [(ngModel)]="selectedPatient.street">
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>city</mat-label>
+      <label>
+        <input required matInput [(ngModel)]="selectedPatient.city">
+      </label>
+    </mat-form-field>
+    <div>
+      <button type="submit"
+              [disabled]="selectedPatient.city == '' || selectedPatient.street == ''|| selectedPatient.lastName == ''|| selectedPatient.firstName== ''"
+              mat-raised-button color="primary" (click)="savePatient()">Save
+      </button>
+    </div>
+  </mat-card>
+</div>
