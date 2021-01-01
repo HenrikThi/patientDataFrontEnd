@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatSortModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import {PatientsService} from './patients.service';
 
 import {Patient} from './model/Patient.model';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'street', 'city', 'edit', 'delete'];
   dataSource;
 
-  constructor(private patientService: PatientsService) {
+  constructor(private patientService: PatientsService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
     this.patientService.addPatient(this.selectedPatient).subscribe(patient => {
       this.patients.push(patient);
       this.updatePatients(this.patients);
-    }, error => console.log(error));
+    }, error => this.snackBar.open(error.error, 'close', {duration: 2000}));
   }
 
   updatePatient(): void {
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit {
       .subscribe(patient => {
         this.updatePatientInList(patient);
         this.updatePatients(this.patients);
-      }, error => console.log(error));
+      }, error => this.snackBar.open(error.error, 'close', {duration: 2000}));
   }
 
   deletePatient(id: number): void {
