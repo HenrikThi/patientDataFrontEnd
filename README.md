@@ -5,7 +5,7 @@ The front-end is a single page application developed with Angular 11 and is gene
 A few tests are added for [main component](src/app/app.component.spec.ts) and [http client](src/app/patients.service.spec.ts).
 Results: ![alt text](https://i.imgur.com/alG15cc.png)
 
-The app is hosted on [Heroku](https://patient-data-frontend.herokuapp.com/).
+The app is hosted on Heroku and can be tried [here](https://patient-data-frontend.herokuapp.com/).
 
 Currently, I am doing my Masters Thesis at the [Department of Biomedical Informatics, University of Utah](https://medicine.utah.edu/dbmi/) and there is not enough time to add additional features or a more detailed documentation. I hope it is still sufficient.
 
