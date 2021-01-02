@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  title = 'Patient CRUD Example';
   patients: Patient[];
   selectedPatient: Patient;
   displayedColumns: string[] = ['id', 'name', 'street', 'city', 'edit', 'delete'];
