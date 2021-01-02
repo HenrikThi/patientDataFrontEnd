@@ -1,6 +1,9 @@
 # PatientDataFrontEnd
 ## Documentation
-The front-end is a single page application developed with Angular 11 and is generated with AngularCLI. It presents a list of patient information to the user and offers create, read, update and delete (CRUD) funcionalities. The app is developed according to the Material Design. The patient list is ordered by the patient's last name. The back-end does not allow duplicates. If the user tries to add a duplicate, the server error message will be presented to the user. The patient list can be searched. A few tests are added for [main component](src/app/app.component.spec.ts) and [http client](src/app/patients.service.spec.ts).
+The front-end is a single page application developed with Angular 11 and is generated with AngularCLI. It presents a list of patient information to the user and offers create, read, update and delete (CRUD) funcionalities. The app is developed according to the Material Design. The patient list is ordered by the patient's last name. The back-end does not allow duplicates. If the user tries to add a duplicate, the server error message will be presented to the user. The patient list can be searched.
+
+A few tests are added for [main component](src/app/app.component.spec.ts) and [http client](src/app/patients.service.spec.ts).
+Results: ![alt text](https://i.imgur.com/alG15cc.png)
 
 The app is hosted on [Heroku](https://patient-data-frontend.herokuapp.com/).
 
