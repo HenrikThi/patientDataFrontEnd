@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {PatientsService} from './patients.service';
 
 import {Patient} from './model/Patient.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,9 @@ export class AppComponent implements OnInit {
   selectedPatient: Patient;
   displayedColumns: string[] = ['id', 'name', 'street', 'city', 'edit', 'delete'];
   dataSource;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private patientService: PatientsService, private snackBar: MatSnackBar) {
+  constructor(private patientService: PatientsService, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -84,5 +86,7 @@ export class AppComponent implements OnInit {
   updatePatients(updatedPatients: Patient[]): void {
     this.patients = updatedPatients.sort((a, b) => a.lastName.localeCompare(b.lastName));
     this.dataSource = new MatTableDataSource(this.patients);
+    this.dataSource.paginator = this.paginator;
+    this.cdr.detectChanges();
   }
 }
